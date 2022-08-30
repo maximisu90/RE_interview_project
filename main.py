@@ -1,53 +1,65 @@
-
 import sys
 
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
+    QApplication,
+    QHBoxLayout,
+    QLabel,
+    QMainWindow,
+    QPushButton,
+    QStackedLayout,
+    QVBoxLayout,
+    QWidget,
+)
 
-from PyQt5.QtWidgets import QApplication
-
-from PyQt5.QtWidgets import QLabel
-
-from PyQt5.QtWidgets import QPushButton
-
-from PyQt5.QtWidgets import QVBoxLayout
-
-from PyQt5.QtWidgets import QWidget
+from layout_colorwidget import Color
 
 
-def greeting():
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
-    """Slot function."""
+        self.setWindowTitle("My App")
 
-    if msg.text():
+        pagelayout = QVBoxLayout()
+        button_layout = QHBoxLayout()
+        self.stacklayout = QStackedLayout()
 
-        msg.setText("")
+        pagelayout.addLayout(button_layout)
+        pagelayout.addLayout(self.stacklayout)
 
-    else:
+        btn = QPushButton("red")
+        btn.pressed.connect(self.activate_tab_1)
+        button_layout.addWidget(btn)
+        self.stacklayout.addWidget(Color("red"))
 
-        msg.setText("Hello World!")
+        btn = QPushButton("green")
+        btn.pressed.connect(self.activate_tab_2)
+        button_layout.addWidget(btn)
+        self.stacklayout.addWidget(Color("green"))
+
+        btn = QPushButton("yellow")
+        btn.pressed.connect(self.activate_tab_3)
+        button_layout.addWidget(btn)
+        self.stacklayout.addWidget(Color("yellow"))
+
+        widget = QWidget()
+        widget.setLayout(pagelayout)
+        self.setCentralWidget(widget)
+
+    def activate_tab_1(self):
+        self.stacklayout.setCurrentIndex(0)
+
+    def activate_tab_2(self):
+        self.stacklayout.setCurrentIndex(1)
+
+    def activate_tab_3(self):
+        self.stacklayout.setCurrentIndex(2)
 
 
 app = QApplication(sys.argv)
 
-window = QWidget()
-
-window.setWindowTitle('Signals and slots')
-
-layout = QVBoxLayout()
-
-
-btn = QPushButton('Greet')
-
-btn.clicked.connect(greeting)  # Connect clicked to greeting()
-
-
-layout.addWidget(btn)
-
-msg = QLabel('')
-
-layout.addWidget(msg)
-
-window.setLayout(layout)
-
+window = MainWindow()
 window.show()
 
-sys.exit(app.exec_())
+app.exec()
