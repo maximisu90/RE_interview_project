@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import (QWidget, QGridLayout,QPushButton, QApplication, QMainWindow)
 from PyQt5 import QtWidgets, QtGui
-
+from PyQt5.QtGui import QIntValidator,QDoubleValidator,QFont
 
 class Labels(QtWidgets.QLabel):
     def __init__(self,name='',txt=''):
@@ -132,6 +132,8 @@ class basicWindow(QWidget):
         v_set_point(name='Exit slit'),
         v_set_point(name='Beamline resolution')]
 
+        self.b_set_points[0].setValidator(QIntValidator(240,2400))
+
         self.b_set_buttons=[v_set_button(name='Beamline energy'),
         v_set_button(name='Harmonic'),
         v_set_button(name='Exit slit'),
@@ -203,7 +205,7 @@ class basicWindow(QWidget):
 
     def set_b_value(self,i):
         val=self.b_set_points[i].get_value()
-        self.validate_input(self.b_set_points[i])
+        
         self.b_current_vals[i].update_val(val)
 
     def set_a_value(self,i):
