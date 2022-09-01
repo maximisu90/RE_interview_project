@@ -88,7 +88,7 @@ class v_set_point_list(QtWidgets.QComboBox):
         self.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
     def get_value(self):
         return(self.currentText())
-
+    
 
 class v_set_button(QtWidgets.QPushButton):
     def __init__(self,name='',):
@@ -131,8 +131,10 @@ class basicWindow(QWidget):
         v_set_point_list(name='Harmonic',value_list=["1st","3rd"]),
         v_set_point(name='Exit slit'),
         v_set_point(name='Beamline resolution')]
-
+        ### validation####
         self.b_set_points[0].setValidator(QIntValidator(240,2400))
+        self.b_set_points[2].setValidator(QDoubleValidator(-5, 500, 3))
+        self.b_set_points[3].setValidator(QIntValidator(0,2147483646))
 
         self.b_set_buttons=[v_set_button(name='Beamline energy'),
         v_set_button(name='Harmonic'),
@@ -179,6 +181,7 @@ class basicWindow(QWidget):
         self.a_set_points=[v_set_point_list(name='aset1',value_list=["1.5", "0.8", "0.4", "0.2"]),
         v_set_point_list(name='aset2',value_list=["1","2","5","10","20","50","100","200"]),
         v_set_point(name='aset3')]
+        self.a_set_points[2].setValidator(QIntValidator(0,2147483646))
 
         self.a_set_buttons=[v_set_button(name='aBset1'),
         v_set_button(name='aBset2'),
@@ -204,13 +207,28 @@ class basicWindow(QWidget):
             self.a_set_buttons[i].clicked.connect(lambda _, i=i: self.set_a_value(i))
 
     def set_b_value(self,i):
-        val=self.b_set_points[i].get_value()
-        
-        self.b_current_vals[i].update_val(val)
+        if 'hasAcceptableInput' in dir(self.b_set_points[i]):
+            if self.b_set_points[i].hasAcceptableInput():
+                val=self.b_set_points[i].get_value()
+                
+                self.b_current_vals[i].update_val(val)
+            else:
+                print('Value outside range ',self.b_set_points[i].validator().bottom(),' and ',self.b_set_points[i].validator().top())
+        else:
+            val=self.b_set_points[i].get_value()
+                
+            self.b_current_vals[i].update_val(val)
 
     def set_a_value(self,i):
-        val=self.a_set_points[i].get_value()
-        self.a_current_vals[i].update_val(val)
+        if 'hasAcceptableInput' in dir(self.a_set_points[i]):
+            if self.a_set_points[i].hasAcceptableInput():
+                val=self.a_set_points[i].get_value()
+                
+                self.a_current_vals[i].update_val(val)
+        else:
+            val=self.a_set_points[i].get_value()
+                
+            self.a_current_vals[i].update_val(val)
     def validate_input(self,set_val):
         print('validating')
         if set_val.name=='Beamline energy':
