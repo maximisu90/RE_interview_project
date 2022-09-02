@@ -3,6 +3,14 @@ from PyQt5.QtWidgets import (QWidget, QGridLayout,QPushButton, QApplication, QMa
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtGui import QIntValidator,QDoubleValidator,QFont
 
+
+class Parameter():
+    def __init__(self):
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        color  = QtGui.QColor(255,255,255)
+        self.label=QtWidgets.Qlabel()
+
 class basicWindow(QWidget):
     def __init__(self):
         super().__init__()
