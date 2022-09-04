@@ -139,3 +139,33 @@ class Parameter():
             self.curr_val.setText(val)
     def get_cur_val(self):
         return self.curr_val.text()
+
+
+
+class Parameter_combined_resolution():
+    def __init__(self,name='',current_val='12'):
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        
+        
+        
+        self.label=QtWidgets.QLabel()
+        self.label.setText(name)
+        self.label.setFont(font)
+
+        self.curr_val=QtWidgets.QLabel()
+        self.curr_val.setFont(font)
+        self.curr_val.setAutoFillBackground(True)
+        self.curr_val.setFrameShape(QtWidgets.QFrame.Panel)
+        self.curr_val.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.curr_val.setMidLineWidth(2)
+
+        self.curr_val.setText(current_val)
+        color  = QtGui.QColor(0,255,0)
+        alpha  = 140
+        values = "{r}, {g}, {b}, {a}".format(r = color.red(),
+                                            g = color.green(),
+                                            b = color.blue(),
+                                            a = alpha
+                                            )
+        self.curr_val.setStyleSheet("QLabel { background-color: rgba("+values+"); }")

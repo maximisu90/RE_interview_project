@@ -11,7 +11,7 @@ dx=x[1:]-x[:-1]
 dy=y[1:]-y[:-1]
 
 # plt.scatter(x,np.sqrt(np.log(y)))
-plt.scatter(x,np.exp(y))
+plt.scatter(y,1/x)
 # plt.scatter(x,y)
 # plt.yscale('log')
 plt.show()
