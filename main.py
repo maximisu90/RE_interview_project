@@ -60,9 +60,7 @@ class basicWindow(QWidget):
         self.par['Exit slit'].set_button.clicked.connect(self.b_log.apply_logic_exit_slit)
         self.par['Beamline resolution'].set_button.clicked.connect(self.b_log.apply_logic_bl_res)
         self.par['Pass energy'].set_button.clicked.connect(self.b_log.apply_logic_pass_energy)
-
-    def do_print(self):
-        print('mere')
+        self.par['Analyzer resolution'].set_button.clicked.connect(self.b_log.apply_logic_analyzer_res)
 
     def ad_par_layout(self,par,nrow):
         self.grid_layout.addWidget(par.label,nrow,0)

@@ -1,6 +1,11 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QIntValidator,QDoubleValidator,QFont
+
+# def qt_color(color_list=[255,255,255]):
+
+
+
 class Parameter_list():
     def __init__(self,name='',current_val='12',value_list=['12','13']):
         font = QFont()
@@ -20,28 +25,16 @@ class Parameter_list():
         self.curr_val.setMidLineWidth(2)
 
         self.curr_val.setText(current_val)
-        color  = QtGui.QColor(0,255,0)
-        alpha  = 140
-        values = "{r}, {g}, {b}, {a}".format(r = color.red(),
-                                            g = color.green(),
-                                            b = color.blue(),
-                                            a = alpha
-                                            )
-        self.curr_val.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
+    
+        self.curr_val.setStyleSheet("QLabel { background-color: lightgreen; }")
 
 
         self.set_val=QtWidgets.QComboBox()
         self.set_val.setFont(font)
         self.set_val.setAutoFillBackground(True)
         self.set_val.addItems(value_list)
-        color  = QtGui.QColor(255,255,255)
-        alpha  = 140
-        values = "{r}, {g}, {b}, {a}".format(r = color.red(),
-                                            g = color.green(),
-                                            b = color.blue(),
-                                            a = alpha
-                                            )
-        self.set_val.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
+
+        self.set_val.setStyleSheet("QComboBox { background-color: lightgrey; }")
         
 
         self.set_button=QtWidgets.QPushButton()
@@ -49,14 +42,7 @@ class Parameter_list():
         self.set_button.setAutoFillBackground(True)
         self.set_button.setObjectName(name)
         self.set_button.setText('Set')
-        color  = QtGui.QColor(0,0,255)
-        alpha  = 140
-        values = "{r}, {g}, {b}, {a}".format(r = color.red(),
-                                            g = color.green(),
-                                            b = color.blue(),
-                                            a = alpha
-                                            )
-        self.set_button.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
+        self.set_button.setStyleSheet("background-color: lightblue")
 
         self.onclick()
     def onclick(self):
@@ -85,14 +71,7 @@ class Parameter():
         self.curr_val.setMidLineWidth(2)
 
         self.curr_val.setText(current_val)
-        color  = QtGui.QColor(0,255,0)
-        alpha  = 140
-        values = "{r}, {g}, {b}, {a}".format(r = color.red(),
-                                            g = color.green(),
-                                            b = color.blue(),
-                                            a = alpha
-                                            )
-        self.curr_val.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
+        self.curr_val.setStyleSheet("QLabel { background-color: lightgreen; }")
 
 
         self.set_val=QtWidgets.QLineEdit()
@@ -101,12 +80,8 @@ class Parameter():
         self.set_val.setText(set_val)
         color  = QtGui.QColor(255,255,255)
         alpha  = 140
-        values = "{r}, {g}, {b}, {a}".format(r = color.red(),
-                                            g = color.green(),
-                                            b = color.blue(),
-                                            a = alpha
-                                            )
-        self.set_val.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
+
+        self.set_val.setStyleSheet("QLineEdit { background-color: white; }")
         if validator!=None:
             self.set_val.setValidator(QIntValidator(val_bottom,val_top))
 
@@ -122,7 +97,7 @@ class Parameter():
                                             b = color.blue(),
                                             a = alpha
                                             )
-        self.set_button.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
+        self.set_button.setStyleSheet("QPushButton { background-color: lightblue; }")
 
         self.onclick()
     def onclick(self):
@@ -168,11 +143,5 @@ class Parameter_combined_resolution():
         self.curr_val.setMidLineWidth(2)
 
         self.curr_val.setText(current_val)
-        color  = QtGui.QColor(0,255,0)
-        alpha  = 140
-        values = "{r}, {g}, {b}, {a}".format(r = color.red(),
-                                            g = color.green(),
-                                            b = color.blue(),
-                                            a = alpha
-                                            )
-        self.curr_val.setStyleSheet("QLabel { background-color: rgba("+values+"); }")
+        
+        self.curr_val.setStyleSheet("QLabel { background-color: lightgreen; }")

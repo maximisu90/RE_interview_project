@@ -61,8 +61,13 @@ class business_logic():
         dE=int(self.parameters["Analyzer resolution"].curr_val.text())
         d=float(self.parameters["Analyzer slit"].curr_val.text())
         PE=dE*1e-3*300/d
-        self.parameters["Analyzer resolution"].curr_val.setText(f'{dE}')
-        self.parameters['Analyzer resolution'].set_val.setText(f'{dE}')
+        PE_list=[float(self.parameters["Pass energy"].set_val.itemText(i)) for i in  range(self.parameters["Pass energy"].set_val.count())]
+        PE_list=np.array(PE_list)
+        ind=np.argmin(abs(PE_list-PE))
+
+        self.parameters["Pass energy"].set_val.setCurrentIndex(ind)
+        self.parameters["Pass energy"].curr_val.setText(self.parameters["Pass energy"].set_val.currentText())
+        #
 
         self.apply_logic_combined_resolution()
 
