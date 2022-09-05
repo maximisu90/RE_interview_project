@@ -14,6 +14,6 @@ print(round(1.65))
 xl=np.linspace(10,150,300)
 yl=np.linspace(3500,30000,300)
 plt.scatter(x,y,c='k')
-plt.plot(xl,1/f1(xl),c='r')
+plt.plot(xl,1/f1(xl),c='r')↓
 plt.plot(f2(1/yl),yl,c='b')
 plt.show()
