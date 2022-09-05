@@ -1,8 +1,10 @@
-# User dialog for beamline sets
-answer to recruiters project question
+# User dialog for beamline settings
+The projects creates a dialog for users to change beamline settings such as resolution beamline energy etc..
+## Package requirements 
+Pyqt5, numpy, scipy
 
-nume
-cum se porneste
-ce face proiectul
-ce am folosit librarii 
-ce are fisierul slit_energy_data
+## To start simply run "python main.py"
+
+
+
+"slit_energy_data.txt", "business_logic.py"
