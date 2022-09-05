@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QIntValidator,QDoubleValidator,QFont
 class Parameter_list():
     def __init__(self,name='',current_val='12',value_list=['12','13']):
@@ -133,10 +134,16 @@ class Parameter():
                 val=self.set_val.text()
                 self.curr_val.setText(val)
             else:
-                print('Value outside range ',self.set_val.validator().bottom(),' and ',self.set_val.validator().top())
+                self.warning_action()
         else:
             val=self.set_val.text()
             self.curr_val.setText(val)
+    def warning_action(self):
+        msg = QMessageBox()
+        s=f'Value outside range {self.set_val.validator().bottom()} - {self.set_val.validator().top()}'
+
+        msg.setText(s)
+        x = msg.exec_()
     def get_cur_val(self):
         return self.curr_val.text()
 
