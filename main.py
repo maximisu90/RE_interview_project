@@ -38,7 +38,7 @@ class BasicWindow(QWidget):
                                               value_list=['1st', '3rd'])
         self.par['Exit slit'] = Parameter(name="Exit slit, \u03BCm",
                                           validator=QDoubleValidator,
-                                          val_bottom=-5, val_top=500)
+                                          val_bottom=5, val_top=500)
 
         self.par["Beamline resolution"] = Parameter(name="Beamline resolution, meV",
                                                     validator=QIntValidator,

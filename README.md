@@ -7,4 +7,4 @@ Pyqt5, numpy, scipy
 
 
 
-"slit_energy_data.txt", "business_logic.py"
+"slit_energy_data.txt", "business_logic.py" and "parameters.py" must be in the same folder as "main.py" to run
